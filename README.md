@@ -216,13 +216,17 @@ Frontend docs: [frontend/README.md](./frontend/README.md).
 
 ## Deployment
 
-Deployment docs: [deployment.md](./deployment.md).
+This project supports two deployment methods:
+
+- **Docker Deployment** (recommended): [deployment.md](./deployment.md)
+- **Native Deployment** (without Docker): [deployment-native.md](./deployment-native.md)
 
 ## Development
 
-General development docs: [development.md](./development.md).
+This project supports two development modes:
 
-This includes using Docker Compose, custom local domains, `.env` configurations, etc.
+- **Docker Development**: [development.md](./development.md) - Uses Docker Compose, custom local domains, `.env` configurations, etc.
+- **Native Development** (without Docker): [development-native.md](./development-native.md) - Run services directly on your system
 
 ## Release Notes
 

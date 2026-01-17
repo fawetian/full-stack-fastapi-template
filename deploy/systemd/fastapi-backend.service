@@ -1,0 +1,63 @@
+# =============================================================================
+# FastAPI 后端 systemd 服务配置
+# =============================================================================
+# 安装方法:
+#   1. 复制此文件到 /etc/systemd/system/
+#   2. 修改路径和用户名
+#   3. 运行: sudo systemctl daemon-reload
+#   4. 运行: sudo systemctl enable fastapi-backend
+#   5. 运行: sudo systemctl start fastapi-backend
+# =============================================================================
+
+[Unit]
+Description=FastAPI Backend Service
+Documentation=https://fastapi.tiangolo.com
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+
+# 运行用户和组 - 根据实际情况修改
+User=www-data
+Group=www-data
+
+# 工作目录 - 修改为实际项目路径
+WorkingDirectory=/var/www/fastapi-app/backend
+
+# 环境变量文件 - 修改为实际路径
+EnvironmentFile=/var/www/fastapi-app/.env
+
+# Python 虚拟环境路径
+Environment="PATH=/var/www/fastapi-app/backend/.venv/bin:/usr/local/bin:/usr/bin:/bin"
+Environment="PYTHONUNBUFFERED=1"
+
+# 启动命令
+# 使用 uvicorn 直接启动（生产推荐）
+ExecStart=/var/www/fastapi-app/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+
+# 或者使用 fastapi 命令（开发模式）
+# ExecStart=/var/www/fastapi-app/backend/.venv/bin/fastapi run app/main.py --host 127.0.0.1 --port 8000
+
+# 重启策略
+Restart=always
+RestartSec=5
+
+# 资源限制（可选）
+# LimitNOFILE=65535
+# MemoryMax=512M
+
+# 安全设置（可选）
+# NoNewPrivileges=yes
+# PrivateTmp=yes
+# ProtectSystem=strict
+# ProtectHome=yes
+# ReadWritePaths=/var/www/fastapi-app
+
+# 日志
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=fastapi-backend
+
+[Install]
+WantedBy=multi-user.target

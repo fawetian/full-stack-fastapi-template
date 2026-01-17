@@ -216,13 +216,17 @@ Copier 会询问你一些数据，你可能希望在生成项目之前准备好�
 
 ## 部署
 
-部署文档：[deployment.md](./deployment.md)。
+本项目支持两种部署方式：
+
+- **Docker 部署**（推荐）：[deployment.md](./deployment.md) | [中文版](./deployment.zh.md)
+- **非 Docker 部署**：[deployment-native.md](./deployment-native.md) | [中文版](./deployment-native.zh.md)
 
 ## 开发
 
-一般开发文档：[development.md](./development.md)。
+本项目支持两种开发模式：
 
-这包括使用 Docker Compose、自定义本地域、`.env` 配置等。
+- **Docker 开发**：[development.md](./development.md) | [中文版](./development.zh.md) - 使用 Docker Compose、自定义本地域、`.env` 配置等
+- **非 Docker 开发**：[development-native.md](./development-native.md) | [中文版](./development-native.zh.md) - 直接在系统上运行服务
 
 ## 发布说明
 
